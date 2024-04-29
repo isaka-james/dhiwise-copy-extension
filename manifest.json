@@ -1,0 +1,24 @@
+{
+    "name": "Dhiwise Code Copy",
+    "version": "1.0.0",
+    "description": "Copy your codes from your converted dhiwise application made easy!",
+    "manifest_version": 3,
+    "author": "Isaka-James",
+    "action": {
+        "default_icon": "dhiwise.png",
+        "default_popup": "front-end/index.html",
+        "default_title": "Dhiwase Extension"
+    },
+    "content_scripts": [{
+        "js": ["backend/main.js"],
+        "matches": ["https://app.dhiwise.com/application/*"]
+      }],
+    "permissions": [
+         "activeTab", "tabs"
+    ],
+    "optional_host_permissions":[
+        "https://*/*",
+        "http://*/*"
+      ]
+
+}
