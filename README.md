@@ -2,10 +2,22 @@
 
 # 🌐🖥️ Dhiwise Copy Extension 🌍🌎
 
-  <p>
-    <img src="https://komarev.com/ghpvc/?username=dhiwise-exts&label=Dhiwise%20Extension&color=0e75b6&style=flat" alt="since 21 Feb,2024" />
-  </p>
-  
+<p>
+  <img src="https://komarev.com/ghpvc/?username=dhiwise-exts&label=Dhiwise%20Extension&color=0e75b6&style=flat" alt="since 21 Feb,2024" />
+</p>
+
+## 🚀 New Features & Fixes 🎉  
+###  - 03 September, 2024
+
+- **Copy Confirmation Toast:** Now, when you copy code, a toast message will confirm that the code has been copied to your clipboard. 🚀📋
+  > ![image](https://github.com/user-attachments/assets/cb5fdfa3-be63-4d00-b4aa-14a3c3cb23e2)
+- **Improved Copying Functionality:** Fixed the issue with binary spaces appearing when copying code. Enjoy a cleaner copy experience! 🧹✨
+  >![image](https://github.com/user-attachments/assets/6fb45595-a6a6-482d-adbf-be7739c432e6)
+- **Image Download:** You can now download images (PNG format supported). Click on an image and select "Copy" to download the picture. 🖼️💾
+  >![image](https://github.com/user-attachments/assets/ae19359a-b9b4-4d0e-b8b8-3d3fec6201b4)
+- **Enhanced Code Copy:** Clicking "Copy" on a Dart file will copy the code to your clipboard seamlessly. 📂🔗
+  >![image](https://github.com/user-attachments/assets/6010b366-4720-4321-852b-da92ad2bc5d7)
+
 Dhiwise Copy Extension is your go-to solution for swift code copying in the Chrome browser, saving you both time and money! 
 
 With a simple click, this extension turbocharges your coding experience, making copying snippets a breeze and putting more cash back in your pocket! 🎉💸
@@ -29,9 +41,17 @@ Getting started with Dhiwise Copy Extension is as easy as pie:
 
 Once installed, Dhiwise Copy Extension is just a click away. Simply spot a code snippet you fancy, hit the Dhiwise icon in your Chrome toolbar, and watch the magic happen! 🪄✨ Your code is now conveniently copied to your clipboard, ready to be pasted into your projects.
 
+### New Copy Toast
+When you copy code, a toast message will confirm that the code has been copied.
+
+### Image Download
+Click on an image and select "Copy" to download it as a PNG.
+
+### Enhanced Code Copy
+Click "Copy" on Dart files to copy code directly to your clipboard.
+
 ### Screenshot
 ![image](https://github.com/isaka-james/dhiwise-copy-extension/assets/76619967/a0ff19cc-0457-41fd-95a7-54586fafded7)
-
 
 ## Contributing 🤝
 
@@ -40,3 +60,4 @@ We welcome contributions from fellow tech enthusiasts! Whether it's bug fixes, f
 ## License 📜
 
 Dhiwise Copy Extension is licensed under the [MIT License](LICENSE). Feel free to tinker, tweak, and customize to your heart's content!
+
