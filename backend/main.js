@@ -89,13 +89,50 @@ function getAllTextContent(element) {
     return textContent;
 }
 
+// Function to toast a message
+function showMessageDhiwise(message) {
+    // Create the message div
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'center-bottom-message';
+    messageDiv.style = `
+        position: fixed !important;
+        bottom: 60px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        padding: 15px 25px !important;
+        background-color: #28a745 !important;
+        color: #fff !important;
+        border-radius: 8px !important;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3) !important;
+        z-index: 10000 !important;
+        font-family: Arial, sans-serif !important;
+        font-size: 18px !important;
+        font-weight: bold !important;
+        display: block !important;
+        opacity: 1 !important;
+        transition: opacity 0.4s ease !important;
+    `;
+    messageDiv.textContent = message;
+
+    // Insert the div at the beginning of the <body>
+    document.body.insertAdjacentElement('afterbegin', messageDiv);
+
+    // Remove the div after 3 seconds
+    setTimeout(() => {
+        messageDiv.style.opacity = '0';
+        setTimeout(() => {
+            messageDiv.remove();
+        }, 400); // Matches the transition duration
+    }, 3000);
+}
+
 
 
 // Define the function you want to call
 function activate() {
-    enableCursor();
-    addToConfuseJs();
-    enableSelecting();
+    enableCursor(); // Here we enable cursor which is disabled on the dhiwise website
+    addToConfuseJs(); // we need to confuse the js that is disabling us to copy the codes
+    enableSelecting(); // Enabling the selection of codes which we can copy without problem
 
     var allText = null;
 
@@ -161,6 +198,7 @@ function activate() {
 
         // Call the copyTextToClipboard function with the text to copy
         copyTextToClipboard(allText);
+        showMessageDhiwise("Copied was Copied Successfully!");
         activate();
     });
 
