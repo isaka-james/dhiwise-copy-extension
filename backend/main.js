@@ -77,12 +77,12 @@ function getAllTextContent(element) {
         // If it's a "view-line" element
         if (node.classList.contains('view-line')) {
           // Append its text content to the result
-          textContent += node.textContent;
-          // Add a newline character after the text content of the "view-line" element
-          textContent += '\n';
+          textContent += node.textContent.replace(/\s/g, " ") + '\n';
+        } else {
+          textContent += getAllTextContent(node);
         }
-        // Recursively call the function to get the text content of its children
-        textContent += getAllTextContent(node);
+      } else if (node.nodeType === Node.TEXT_NODE) {
+        textContent += node.textContent.replace(/\s/g, " ");
       }
     }
   
