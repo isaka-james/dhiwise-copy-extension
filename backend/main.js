@@ -47,6 +47,28 @@ function addToConfuseJs() {
 
 }
 
+// Get the file name from a focused li
+function getFileNameFromFocusedLi() {
+    // Find the <li> element with the class 'rstm-tree-item--focused'
+    const focusedLi = document.querySelector('li.rstm-tree-item--focused');
+
+    if (focusedLi) {
+        // Find the <div> containing the file name
+        const fileNameDiv = focusedLi.closest('div').querySelector('.text-sm.ml-1.truncate.text-high.text-dhiWhite');
+
+        if (fileNameDiv) {
+            // Get the file name text content
+            const fileName = fileNameDiv.textContent.trim();
+            return fileName;
+        } else {
+            console.error('File name div not found');
+            return null;
+        }
+    } else {
+        console.error('Focused <li> not found');
+        return null;
+    }
+}
 
 // JavaScript
 function enableSelecting() {
@@ -151,6 +173,7 @@ function activate() {
 
     var remBtn = document.getElementById("copy-btn");
 
+
     // Check if the button exists
     if (document.getElementById("copy-btn")) {
         // Remove the button from the div
@@ -160,9 +183,9 @@ function activate() {
     // Create a new button element
     var button = document.createElement("button");
 
-    // Set button text
-    button.textContent = "Copy Code";
-    // Get the button inside the div
+
+    // Set button text for code copy
+    button.textContent = "Copy";
 
     button.setAttribute('id', 'copy-btn');
 
@@ -190,10 +213,35 @@ function activate() {
     // Add an event listener to the button
     button.addEventListener("click", function () {
 
-        // Call the copyTextToClipboard function with the text to copy
-        copyTextToClipboard(allText);
-        // Change button text to "Copied" for 2 seconds
-        showMessageDhiwise("Copied was Copied Successfully!");
+
+        if (document.getElementsByClassName('editorImage')[0]) {
+            const imageDiv = document.querySelector('.editorImage img');
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Set canvas dimensions to match image
+            canvas.width = imageDiv.naturalWidth;
+            canvas.height = imageDiv.naturalHeight;
+
+            // Draw the image on the canvas
+            ctx.drawImage(imageDiv, 0, 0);
+
+            // Convert the canvas to a data URL
+            const dataURL = canvas.toDataURL('image/png');
+
+            // Create a link element and trigger a download
+            const link = document.createElement('a');
+            link.href = dataURL;
+            link.download = getFileNameFromFocusedLi(); // Filename for the downloaded image
+            link.click();
+            showMessageDhiwise("Picture was downloaded Successfully!");
+        } else {
+            // Call the copyTextToClipboard function with the text to copy
+            copyTextToClipboard(allText);
+            showMessageDhiwise("Code was Copied Successfully!");
+        }
+
+
         activate();
     });
 
