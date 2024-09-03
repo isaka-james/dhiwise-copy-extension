@@ -106,7 +106,7 @@ function activate() {
     var divElement = document.querySelector('.monaco-scrollable-element');
 
     allText = getAllTextContent(divElement);
-    console.log(allText);
+    //console.log(allText);
 
 
     // DELETE BEFORE STARTING
