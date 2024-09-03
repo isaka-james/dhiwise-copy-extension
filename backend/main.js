@@ -181,12 +181,6 @@ function activate() {
                 // Attempt to write text to clipboard
                 await navigator.clipboard.writeText(textToCopy);
 
-                // Change button text to "Copied" for 2 seconds
-                button.textContent = "Copied";
-                setTimeout(function () {
-                    // Revert button text to "Copy code"
-                    button.textContent = "Copy code";
-                }, 2000);
             }
         } catch (err) {
             console.error(err);
@@ -198,6 +192,7 @@ function activate() {
 
         // Call the copyTextToClipboard function with the text to copy
         copyTextToClipboard(allText);
+        // Change button text to "Copied" for 2 seconds
         showMessageDhiwise("Copied was Copied Successfully!");
         activate();
     });
