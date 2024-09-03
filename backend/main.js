@@ -1,5 +1,5 @@
 // Listen for messages from the popup or other parts of the extension
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     // Check if the message contains a specific action
     if (message.action === "activate") {
         // Call the function defined in the content script
@@ -14,11 +14,11 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 function enableCursor() {
     var targetElement = document.querySelector('.overflow-hidden.relative.h-full.false.undefined.readonlyEditor');
     if (targetElement) {
-      // Remove specified classes
-      targetElement.classList.remove('false', 'undefined', 'readonlyEditor');
-      // Add new class
-      targetElement.classList.add('h-full');
-      targetElement.classList.add('true');
+        // Remove specified classes
+        targetElement.classList.remove('false', 'undefined', 'readonlyEditor');
+        // Add new class
+        targetElement.classList.add('h-full');
+        targetElement.classList.add('true');
     }
 }
 
@@ -50,18 +50,18 @@ function addToConfuseJs() {
 
 // JavaScript
 function enableSelecting() {
-  // Get all div elements with the class "monaco-editor"
-  var divElements = document.querySelectorAll('.monaco-editor');
+    // Get all div elements with the class "monaco-editor"
+    var divElements = document.querySelectorAll('.monaco-editor');
 
-  // Iterate through each div element
-  divElements.forEach(function(divElement) {
-      // Check if "no-user-select" class is present
-      if (divElement.classList.contains('no-user-select')) {
-          // Replace "no-user-select" with "user-select"
-          divElement.classList.replace('no-user-select', 'user-select');
-          //alert("changed");
-      }
-  });
+    // Iterate through each div element
+    divElements.forEach(function (divElement) {
+        // Check if "no-user-select" class is present
+        if (divElement.classList.contains('no-user-select')) {
+            // Replace "no-user-select" with "user-select"
+            divElement.classList.replace('no-user-select', 'user-select');
+            //alert("changed");
+        }
+    });
 
 }
 
@@ -69,25 +69,25 @@ function enableSelecting() {
 // Define the modified getAllTextContent function
 function getAllTextContent(element) {
     let textContent = '';
-  
+
     // Iterate over child nodes of the element
     for (let node of element.childNodes) {
-      // If it's an element node
-      if (node.nodeType === Node.ELEMENT_NODE) {
-        // If it's a "view-line" element
-        if (node.classList.contains('view-line')) {
-          // Append its text content to the result
-          textContent += node.textContent.replace(/\s/g, " ") + '\n';
-        } else {
-          textContent += getAllTextContent(node);
+        // If it's an element node
+        if (node.nodeType === Node.ELEMENT_NODE) {
+            // If it's a "view-line" element
+            if (node.classList.contains('view-line')) {
+                // Append its text content to the result
+                textContent += node.textContent.replace(/\s/g, " ") + '\n';
+            } else {
+                textContent += getAllTextContent(node);
+            }
+        } else if (node.nodeType === Node.TEXT_NODE) {
+            textContent += node.textContent.replace(/\s/g, " ");
         }
-      } else if (node.nodeType === Node.TEXT_NODE) {
-        textContent += node.textContent.replace(/\s/g, " ");
-      }
     }
-  
+
     return textContent;
-  }
+}
 
 
 
@@ -97,7 +97,7 @@ function activate() {
     addToConfuseJs();
     enableSelecting();
 
-    var allText=null;
+    var allText = null;
 
     // chrome.runtime.sendMessage({action: "fromContentScript", data: true});
 
@@ -137,39 +137,39 @@ function activate() {
     divSideBar.appendChild(button);
 
 
-// Define the copyTextToClipboard function
-async function copyTextToClipboard(textToCopy) {
-    try {
-        if (navigator?.clipboard?.writeText) {
-            // Attempt to write text to clipboard
-            await navigator.clipboard.writeText(textToCopy);
+    // Define the copyTextToClipboard function
+    async function copyTextToClipboard(textToCopy) {
+        try {
+            if (navigator?.clipboard?.writeText) {
+                // Attempt to write text to clipboard
+                await navigator.clipboard.writeText(textToCopy);
 
-            // Change button text to "Copied" for 2 seconds
-            button.textContent = "Copied";
-            setTimeout(function() {
-                // Revert button text to "Copy code"
-                button.textContent = "Copy code";
-            }, 2000);
+                // Change button text to "Copied" for 2 seconds
+                button.textContent = "Copied";
+                setTimeout(function () {
+                    // Revert button text to "Copy code"
+                    button.textContent = "Copy code";
+                }, 2000);
+            }
+        } catch (err) {
+            console.error(err);
         }
-    } catch (err) {
-        console.error(err);
     }
+
+    // Add an event listener to the button
+    button.addEventListener("click", function () {
+
+        // Call the copyTextToClipboard function with the text to copy
+        copyTextToClipboard(allText);
+        activate();
+    });
+
+
+
 }
 
-// Add an event listener to the button
-button.addEventListener("click", function() {
 
-    // Call the copyTextToClipboard function with the text to copy
-    copyTextToClipboard(allText);
-    activate();
-});
-
-      
-
-}
-
-
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
 
     // Get reference to the <section> element
@@ -178,18 +178,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Add click event listener to the <section> element
     sectionElement.addEventListener('click', () => {
-    // This will ensure that whenever a click occurs on the <section> element,
-    // the class of the <div> element is always 'user-select'
-    if (sectionElement.classList.contains('no-user-select')) {
-        sectionElement.classList.remove('no-user-select');
-    }
+        // This will ensure that whenever a click occurs on the <section> element,
+        // the class of the <div> element is always 'user-select'
+        if (sectionElement.classList.contains('no-user-select')) {
+            sectionElement.classList.remove('no-user-select');
+        }
         sectionElement.classList.add('user-select');
-    
+
     });
 
-    
+
     // Ensure that the body element is always selectable
     document.div.style.userSelect = 'text';
-
 
 });
