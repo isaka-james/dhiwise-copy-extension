@@ -6,7 +6,11 @@
   <img src="https://komarev.com/ghpvc/?username=dhiwise-exts&label=Dhiwise%20Extension&color=0e75b6&style=flat" alt="since 21 Feb,2024" />
 </p>
 
-## 🚀 New Features & Fixes 🎉  
+## 🚀 New Features & Fixes 🎉 
+### - 28 October, 2024
+
+- **Note on Copying Behavior:** As of today, if the copy function does not work the first time, please click the button twice. This is not a bug; I am currently working on resolving the inconsistency that causes this behavior, which seems to happen about 1 in 50 attempts. Thank you for your patience! 
+
 ###  - 03 September, 2024
 
 - **Copy Confirmation Toast:** Now, when you copy code, a toast message will confirm that the code has been copied to your clipboard. 🚀📋
