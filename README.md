@@ -45,7 +45,7 @@ Once select `Load unpacked`, then what follows is you just go to your converted 
 
 ![image](https://github.com/user-attachments/assets/63a75b1c-03a3-4079-934b-cf1af6f22a04)
 
-After enabling the toggle, you will find the copy button in the left pannel.
+After enabling the toggle, you will find the copy button in the left pannel. Sometimes the `Copy` button may not appear, this happens when `dhiwise` website has not loaded fully on your machine, in this case you can refresh the site, and then turn on the extension again.
 ![image(2)](https://github.com/user-attachments/assets/9bb755c6-d4ea-4e3b-b47c-67089867cd62)
 
 ### New Copy Toast
