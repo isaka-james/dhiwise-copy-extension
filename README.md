@@ -63,7 +63,9 @@ Click "Copy" on Dart files to copy code directly to your clipboard.
 
 ## Contributing 🤝
 
-We welcome contributions from fellow tech enthusiasts! Whether it's bug fixes, feature enhancements, or new ideas, your input is invaluable to us. Feel free to open an issue or submit a pull request – together, we can make Dhiwise even better! 💪🌟
+We welcome contributions from fellow tech enthusiasts! Whether it's bug fixes, feature enhancements, or new ideas, your input is invaluable to us. Feel free to open an issue or submit a pull request – together, we can make Dhiwise even better!
+
+So please if you open a pull request open it on the `dev` branch :)
 
 ## License 📜
 
