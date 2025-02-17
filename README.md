@@ -30,9 +30,10 @@ Getting started with Dhiwise Copy Extension is as easy as pie:
 
 1. **Clone or Download:** Grab the code from this repository or download the ZIP file.
    ![image](https://github.com/user-attachments/assets/65660973-7364-4fe0-89b6-a60c08ed002d)
-3. **Enable Developer Mode:** Type `chrome://extensions/` in your Chrome browser and flick on Developer Mode.
+2. **Enable Developer Mode:** Type `chrome://extensions/` in your Chrome browser and flick on Developer Mode.
    ![image](https://github.com/user-attachments/assets/31b19a50-13de-4cbb-8fd7-e08db6496ff5)
-5. **Load Unpacked:** Click on "Load unpacked" and select the extension directory. Voila! Dhiwise is now at your service.
+3. **Load Unpacked:** Click on "Load unpacked" and select the extension directory. Voila! Dhiwise is now at your service.
+
    ![image](https://github.com/user-attachments/assets/568e06c1-357a-4b59-8120-9e47c9f64e46)
 
    Select inside a `dhiwise-copy-extension` folder
@@ -62,7 +63,9 @@ Click "Copy" on Dart files to copy code directly to your clipboard.
 
 ## Contributing 🤝
 
-We welcome contributions from fellow tech enthusiasts! Whether it's bug fixes, feature enhancements, or new ideas, your input is invaluable to us. Feel free to open an issue or submit a pull request – together, we can make Dhiwise even better! 💪🌟
+We welcome contributions from fellow tech enthusiasts! Whether it's bug fixes, feature enhancements, or new ideas, your input is invaluable to us. Feel free to open an issue or submit a pull request – together, we can make Dhiwise even better!
+
+So please if you open a pull request open it on the `dev` branch :)
 
 ## License 📜
 
