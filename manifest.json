@@ -11,7 +11,7 @@
     },
     "content_scripts": [{
         "js": ["backend/main.js"],
-        "matches": ["https://app.dhiwise.com/application/*"]
+        "matches": ["https://app.dhiwise.com/design-converter/application/*"]
       }],
     "permissions": [
          "activeTab", "tabs"

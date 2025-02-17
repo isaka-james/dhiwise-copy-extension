@@ -7,20 +7,11 @@
 </p>
 
 ## 🚀 New Features & Fixes 🎉 
-### - 28 October, 2024
+### - 17 February, 2025
 
-- **Note on Copying Behavior:** As of today, if the copy function does not work the first time, please click the button twice. This is not a bug; I am currently working on resolving the inconsistency that causes this behavior, which seems to happen about 1 in 50 attempts. Thank you for your patience! 
+- **Link Change:** Update the recently link changes to mirrow the dhiwise changes made.
 
-###  - 03 September, 2024
-
-- **Copy Confirmation Toast:** Now, when you copy code, a toast message will confirm that the code has been copied to your clipboard. 🚀📋
-  > ![image](https://github.com/user-attachments/assets/cb5fdfa3-be63-4d00-b4aa-14a3c3cb23e2)
-- **Improved Copying Functionality:** Fixed the issue with binary spaces appearing when copying code. Enjoy a cleaner copy experience! 🧹✨
-  >![image](https://github.com/user-attachments/assets/6fb45595-a6a6-482d-adbf-be7739c432e6)
-- **Image Download:** You can now download images (PNG format supported). Click on an image and select "Copy" to download the picture. 🖼️💾
-  >![image](https://github.com/user-attachments/assets/ae19359a-b9b4-4d0e-b8b8-3d3fec6201b4)
-- **Enhanced Code Copy:** Clicking "Copy" on a Dart file will copy the code to your clipboard seamlessly. 📂🔗
-  >![image](https://github.com/user-attachments/assets/6010b366-4720-4321-852b-da92ad2bc5d7)
+[More Changes & Feature](CHANGELOG.md)
 
 Dhiwise Copy Extension is your go-to solution for swift code copying in the Chrome browser, saving you both time and money! 
 
