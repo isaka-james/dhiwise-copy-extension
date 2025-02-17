@@ -52,6 +52,9 @@ After enabling the toggle, you will find the copy button in the left pannel. Som
 ### New Copy Toast
 When you copy code, a toast message will confirm that the code has been copied.
 
+### New Copy Toast
+There is also an added option to download the code after copying
+
 ### Image Download
 Click on an image and select "Copy" to download it as a PNG.
 
