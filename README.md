@@ -1,4 +1,4 @@
-
+![image](https://github.com/user-attachments/assets/919eb9e6-2994-4367-9b4a-a3c1c52bab81)
 
 # 🌐🖥️ Dhiwise Copy Extension 🌍🌎
 
@@ -29,12 +29,24 @@ With a simple click, this extension turbocharges your coding experience, making 
 Getting started with Dhiwise Copy Extension is as easy as pie:
 
 1. **Clone or Download:** Grab the code from this repository or download the ZIP file.
-2. **Enable Developer Mode:** Head over to `chrome://extensions/` in your Chrome browser and flick on Developer Mode.
-3. **Load Unpacked:** Click on "Load unpacked" and select the extension directory. Voila! Dhiwise is now at your service.
+   ![image](https://github.com/user-attachments/assets/65660973-7364-4fe0-89b6-a60c08ed002d)
+3. **Enable Developer Mode:** Type `chrome://extensions/` in your Chrome browser and flick on Developer Mode.
+   ![image](https://github.com/user-attachments/assets/31b19a50-13de-4cbb-8fd7-e08db6496ff5)
+5. **Load Unpacked:** Click on "Load unpacked" and select the extension directory. Voila! Dhiwise is now at your service.
+   ![image](https://github.com/user-attachments/assets/568e06c1-357a-4b59-8120-9e47c9f64e46)
 
+   Select inside a `dhiwise-copy-extension` folder
+   ![image](https://github.com/user-attachments/assets/e10511c0-946a-4352-990d-60eb57768604)
+
+   
 ## Usage 🚀
 
-Once installed, Dhiwise Copy Extension is just a click away. Simply spot a code snippet you fancy, hit the Dhiwise icon in your Chrome toolbar, and watch the magic happen! 🪄✨ Your code is now conveniently copied to your clipboard, ready to be pasted into your projects.
+Once select `Load unpacked`, then what follows is you just go to your converted design project, Example mine is at `https://app.dhiwise.com/design-converter/application/xxxxxxxxx?screenExportBuild=2&screenIds=0` in your browser. Now you can click the `Dhiwise Code Copy`. and Activate it.
+
+![image](https://github.com/user-attachments/assets/63a75b1c-03a3-4079-934b-cf1af6f22a04)
+
+After enabling the toggle, you will find the copy button in the left pannel.
+![image(2)](https://github.com/user-attachments/assets/9bb755c6-d4ea-4e3b-b47c-67089867cd62)
 
 ### New Copy Toast
 When you copy code, a toast message will confirm that the code has been copied.
