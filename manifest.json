@@ -1,6 +1,6 @@
 {
     "name": "Dhiwise Code Copy",
-    "version": "1.0.1.1",
+    "version": "1.0.5",
     "description": "Copy your codes from your converted dhiwise application made easy!",
     "manifest_version": 3,
     "author": "Isaka-James",
@@ -22,9 +22,8 @@
     "permissions": [
          "activeTab", "tabs"
     ],
-    "optional_host_permissions":[
-        "https://*/*",
-        "http://*/*"
+    "host_permissions":[
+        "https://app.dhiwise.com/*"
       ]
 
 }
