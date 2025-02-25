@@ -7,10 +7,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     }
 });
 
-
-
-
-
 function enableCursor() {
     var targetElement = document.querySelector('.overflow-hidden.relative.h-full.false.undefined.readonlyEditor');
     if (targetElement) {
@@ -22,13 +18,11 @@ function enableCursor() {
     }
 }
 
-
 function addToConfuseJs() {
     // Step 1: Select the parent element
     const parentElement = document.querySelector('div.monaco-editor');
 
     if (parentElement) { // Check if the parent element exists
-
         // Step 2: Create a new child element
         const newChildElement = document.createElement('div');
         newChildElement.className = "monaco-editor";
@@ -43,8 +37,6 @@ function addToConfuseJs() {
         // Step 4: Append the new child to the parent
         parentElement.appendChild(newChildElement);
     }
-
-
 }
 
 // Get the file name from a focused li
@@ -70,7 +62,6 @@ function getFileNameFromFocusedLi() {
     }
 }
 
-// JavaScript
 function enableSelecting() {
     // Get all div elements with the class "monaco-editor"
     var divElements = document.querySelectorAll('.monaco-editor');
@@ -81,34 +72,101 @@ function enableSelecting() {
         if (divElement.classList.contains('no-user-select')) {
             // Replace "no-user-select" with "user-select"
             divElement.classList.replace('no-user-select', 'user-select');
-            //alert("changed");
         }
     });
-
 }
 
 
-// Define the modified getAllTextContent function
-function getAllTextContent(element) {
-    let textContent = '';
+function formatCode(code) {
+    code = code.replace(/^'|'$/g, '');
+    code = code.replace(/\\n/g, '\n');
+    code = code.replace(/\\'/g, "'");
+    code = code.replace(/\u00A0/g, ' '); 
+    
+    return code;
+}
 
-    // Iterate over child nodes of the element
-    for (let node of element.childNodes) {
-        // If it's an element node
-        if (node.nodeType === Node.ELEMENT_NODE) {
-            // If it's a "view-line" element
-            if (node.classList.contains('view-line')) {
-                // Append its text content to the result
-                textContent += node.textContent.replace(/\s/g, " ") + '\n';
-            } else {
-                textContent += getAllTextContent(node);
-            }
-        } else if (node.nodeType === Node.TEXT_NODE) {
-            textContent += node.textContent.replace(/\s/g, " ");
-        }
+// Modified getAllTextContent function
+function getAllTextContent(element) {
+    let contentCollector = document.createElement('div');
+    contentCollector.style.display = 'none';
+    document.body.appendChild(contentCollector);
+
+    const viewLines = element.querySelector('.view-lines');
+    const viewport = document.querySelector('.monaco-scrollable-element');
+
+    if (!viewLines || !viewport) {
+        contentCollector.remove();
+        return Promise.resolve('/* Error! No Editor */');
     }
 
-    return textContent;
+    function captureVisibleContent() {
+        const lines = viewLines.querySelectorAll('.view-line');
+        let addedNew = false;
+
+        lines.forEach(line => {
+            const top = parseInt(line.style.top) || 0;
+            if (!contentCollector.querySelector(`[data-top="${top}"]`)) {
+                const lineElement = document.createElement('div');
+                lineElement.setAttribute('data-top', top);
+                lineElement.setAttribute('data-content', line.textContent || '');
+                contentCollector.appendChild(lineElement);
+                addedNew = true;
+            }
+        });
+
+        return addedNew;
+    }
+
+    function getCollectedContent() {
+        const lines = Array.from(contentCollector.children);
+
+        const sortedLines = lines
+            .map(line => ({
+                top: parseInt(line.getAttribute('data-top')),
+                content: line.getAttribute('data-content')
+            }))
+            .sort((a, b) => a.top - b.top);
+
+        const finalContent = sortedLines.map(line => line.content).join('\n');
+        contentCollector.remove();
+        return finalContent;
+    }
+
+    return new Promise((resolve) => {
+        viewport.scrollTop = 0;
+        const maxScroll = viewport.scrollHeight;
+        const stepSize = 10; 
+        let prevScrollPos = -1;
+        let noNewContentCount = 0;
+
+
+        setTimeout(async () => {
+            captureVisibleContent();
+
+            for (let scrollPos = 0; scrollPos <= maxScroll; scrollPos += stepSize) {
+                if (scrollPos === prevScrollPos) break;
+                prevScrollPos = scrollPos;
+
+                viewport.scrollTop = scrollPos;
+                await new Promise(r => setTimeout(r, 50)); 
+
+                const addedNew = captureVisibleContent();
+                if (!addedNew) {
+                    noNewContentCount++;
+                    if (noNewContentCount > 3) {
+                        break;
+                    }
+                } else {
+                    noNewContentCount = 0;
+                }
+            }
+
+            viewport.scrollTop = 0;
+            const content = getCollectedContent();
+            resolve(formatCode(content));
+        }, 50); 
+    });
 }
 
 // Function to toast a message
@@ -148,62 +206,35 @@ function showMessageDhiwise(message) {
     }, 3000);
 }
 
-
-
 // Define the function you want to call
 function activate() {
     enableCursor(); // Here we enable cursor which is disabled on the dhiwise website
     addToConfuseJs(); // we need to confuse the js that is disabling us to copy the codes
     enableSelecting(); // Enabling the selection of codes which we can copy without problem
 
-    var allText = null;
-
-    // chrome.runtime.sendMessage({action: "fromContentScript", data: true});
-
-
-    // Get the <div> element with the specified class
     var divElement = document.querySelector('.monaco-scrollable-element');
-
-    allText = getAllTextContent(divElement);
-    //console.log(allText);
-
-
-    // DELETE BEFORE STARTING
     var divSideBar = document.querySelector(".pro-sidebar-layout");
-
     var remBtn = document.getElementById("copy-btn");
 
-
     // Check if the button exists
-    if (document.getElementById("copy-btn")) {
+    if (remBtn) {
         // Remove the button from the div
         divSideBar.removeChild(remBtn);
     }
 
     // Create a new button element
     var button = document.createElement("button");
-
-
-    // Set button text for code copy
     button.textContent = "Copy";
-
     button.setAttribute('id', 'copy-btn');
-
-    // Add inline styles to the button
     button.style.padding = "12px 18px";
     button.style.backgroundColor = "blue";
-
-    // Append the button to the div
     divSideBar.appendChild(button);
-
 
     // Define the copyTextToClipboard function
     async function copyTextToClipboard(textToCopy) {
         try {
             if (navigator?.clipboard?.writeText) {
-                // Attempt to write text to clipboard
                 await navigator.clipboard.writeText(textToCopy);
-
             }
         } catch (err) {
             console.error(err);
@@ -211,65 +242,41 @@ function activate() {
     }
 
     // Add an event listener to the button
-    button.addEventListener("click", function () {
-
-
-        if (document.getElementsByClassName('editorImage')[0]) {
-            const imageDiv = document.querySelector('.editorImage img');
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-
-            // Set canvas dimensions to match image
-            canvas.width = imageDiv.naturalWidth;
-            canvas.height = imageDiv.naturalHeight;
-
-            // Draw the image on the canvas
-            ctx.drawImage(imageDiv, 0, 0);
-
-            // Convert the canvas to a data URL
-            const dataURL = canvas.toDataURL('image/png');
-
-            // Create a link element and trigger a download
-            const link = document.createElement('a');
-            link.href = dataURL;
-            link.download = getFileNameFromFocusedLi(); // Filename for the downloaded image
-            link.click();
-            showMessageDhiwise("Picture was downloaded Successfully!");
-        } else {
-            // Call the copyTextToClipboard function with the text to copy
-            copyTextToClipboard(allText);
+    button.addEventListener("click", async function () {
+    if (document.getElementsByClassName('editorImage')[0]) {
+        const imageDiv = document.querySelector('.editorImage img');
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = imageDiv.naturalWidth;
+        canvas.height = imageDiv.naturalHeight;
+        ctx.drawImage(imageDiv, 0, 0);
+        const dataURL = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = dataURL;
+        link.download = getFileNameFromFocusedLi();
+        link.click();
+        showMessageDhiwise("Picture was downloaded Successfully!");
+    } else {
+        const currentDivElement = document.querySelector('.monaco-scrollable-element');
+        if (currentDivElement) {
+            const formattedText = await getAllTextContent(currentDivElement);
+            await copyTextToClipboard(formattedText);
             showMessageDhiwise("Code was Copied Successfully!");
+        } else {
+            showMessageDhiwise("No content found to copy!");
         }
-
-
-        activate();
-    });
-
-
-
+    }
+    activate();
+});
 }
 
-
 document.addEventListener("DOMContentLoaded", function () {
-
-
-    // Get reference to the <section> element
     var sectionElement = document.querySelector('section');
-
-
-    // Add click event listener to the <section> element
     sectionElement.addEventListener('click', () => {
-        // This will ensure that whenever a click occurs on the <section> element,
-        // the class of the <div> element is always 'user-select'
         if (sectionElement.classList.contains('no-user-select')) {
             sectionElement.classList.remove('no-user-select');
         }
         sectionElement.classList.add('user-select');
-
     });
-
-
-    // Ensure that the body element is always selectable
     document.div.style.userSelect = 'text';
-
 });

@@ -1,5 +1,8 @@
 # Change Log
 
+### - 26 February, 2025
+- **Enable Full Copying:** Users can now copy code without the need to zoom out on the website. This enhancement automates the scrolling process, ensuring a seamless copying experience.
+
 ###  - 17 February, 2025
 - **Update Link:** Recently dhiwise changed the link that refers to the project, so we changed to mirrow the changes. Which previous was `/application` but now it is `/design-converter/application`.
 
