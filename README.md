@@ -7,6 +7,12 @@
 </p>
 
 ## 🚀 New Features & Fixes 🎉 
+### - 23 February, 2025
+
+- **Scroll Emulation:** Automatically collect full code content via scroll emulation.
+- **Content Collection:** Reworked content collection mechanism. Added temporary collector for storing strings.
+- **Copy:** Fixed problem with partial copying of visible content only.
+  
 ### - 17 February, 2025
 
 - **Link Change:** Update the recently link changes to mirrow the dhiwise changes made.
