@@ -1,3 +1,15 @@
+**⚠️⚠️⚠️ Project Archived – June 28, 2025** 
+
+Thank you to all the developers who contributed to and used this tool. As of **June 28, 2025**, I am officially archiving this project.
+
+With DhiWise now partnering with **Rocket**, it's easier than ever to download code—completely free with weekly trial tokens. Due to this integration, the old interface that supported this tool is no longer available.
+
+I sincerely appreciate everyone's support throughout the journey. Thank you!
+
+---
+
+
+
 ![image](https://github.com/user-attachments/assets/919eb9e6-2994-4367-9b4a-a3c1c52bab81)
 
 # 🌐🖥️ Dhiwise Copy Extension 🌍🌎
